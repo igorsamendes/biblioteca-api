@@ -1,98 +1,244 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+<h1 align="center"> Biblioteca API </h1>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Descrição do projeto
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+API REST em NestJS com Prisma + PostgreSQL para gerenciar uma pequena biblioteca digital:
+cadastro/listagem de livros (filtro por status e busca por título), cadastro de usuários, registro de empréstimos e devoluções.
+Inclui Swagger (documentação interativa), seeds (dados iniciais) e testes unitários (Jest).
 
-## Description
+# :hammer: Tecnologias Utilizadas
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Node.js (runtime)
 
-## Project setup
+NestJS (framework web)
 
-```bash
-$ npm install
+Prisma (ORM)
+
+PostgreSQL (banco relacional)
+
+Jest (testes)
+
+Swagger (OpenAPI UI)
+
+# 📁 Acesso ao projeto
+
+Repositório: https://github.com/igorsamendes/biblioteca-api
+
+# 🛠️ Como abrir e rodar o projeto (passo a passo)
+## 1) Instalar Git
+
+Link da ferramenta
+```
+https://www.git-scm.com/downloads
 ```
 
-## Compile and run the project
+## 2) Clonar o repositório
 
-```bash
-# development
-$ npm run start
+```
+git clone https://github.com/igorsamendes/biblioteca-api.git
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+cd biblioteca-api
 ```
 
-## Run tests
+## 3) Instalar Node.js
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+Link da ferramenta
+```
+https://nodejs.org/en/download/prebuilt-installer
+```
+Verificar:
+```
+node -v
+npm -v
 ```
 
-## Deployment
+## 4) Instalar dependências do projeto
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+```
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## 5) Configurar variáveis de ambiente
 
-## Resources
+Crie um arquivo .env na raiz do projeto (baseado no .env.example):
 
-Check out a few resources that may come in handy when working with NestJS:
+```
+DATABASE_URL="postgresql://postgres:senha@localhost:5432/biblioteca?schema=public"
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Certifique-se de ter o PostgreSQL instalado e em execução (porta padrão 5432).
+Crie o banco (se ainda não existir):
+```
+CREATE DATABASE biblioteca;
+```
 
-## Support
+## 6) Aplicar migrations (Prisma)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```
+npx prisma migrate dev --name init
+```
 
-## Stay in touch
+## 7) Executar seed (dados iniciais)
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Cria 2 usuários e 4 livros (não duplica se rodar de novo).
 
-## License
+```
+npm run seed
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 8) Subir a API (modo dev)
+
+```
+npm run start:dev
+```
+API disponível em: http://localhost:3000
+
+
+# 📘 Documentação (Swagger)
+
+Com o servidor rodando:
+
+UI: http://localhost:3000/api-docs
+ (tem botão Try it out)
+
+JSON: http://localhost:3000/api-json
+
+Dica: no Swagger você consegue testar todos os endpoints sem precisar de outra ferramenta.
+
+
+# 🔌 Testes rápidos da API (terminal)
+
+> Em **Windows/PowerShell**, prefira `Invoke-RestMethod` (evita problemas de aspas).  
+> Dica: ajuste os **IDs** conforme os retornos da sua API (ex.: `1`, `2`, ...).
+
+## Root (saúde da API)
+```
+Invoke-RestMethod -Uri "http://localhost:3000/" -Method GET
+```
+
+## Users
+**Criar usuário**
+```
+$body = @{ name="Igor"; email="igor@example.com" } | ConvertTo-Json
+Invoke-RestMethod -Uri "http://localhost:3000/users" -Method POST -ContentType "application/json" -Body $body
+```
+
+**Listar usuários**
+```
+Invoke-RestMethod -Uri "http://localhost:3000/users" -Method GET
+```
+
+**Buscar usuários por nome/e-mail**
+```
+Invoke-RestMethod -Uri "http://localhost:3000/users?search=igor" -Method GET
+```
+
+## Books
+**Criar livro**
+```
+$body = @{ title="Clean Code"; author="Robert C. Martin"; publishedYear=2008 } | ConvertTo-Json
+Invoke-RestMethod -Uri "http://localhost:3000/books" -Method POST -ContentType "application/json" -Body $body
+```
+
+**Listar livros (filtros opcionais)**
+```
+Invoke-RestMethod -Uri "http://localhost:3000/books?status=AVAILABLE&search=clean" -Method GET
+```
+
+**Alternar status (AVAILABLE ↔ BORROWED)**
+```
+Invoke-RestMethod -Uri "http://localhost:3000/books/1/status" -Method PATCH
+```
+
+## Loans
+**Registrar empréstimo**
+```
+$loan = @{ bookId=1; userId=1 } | ConvertTo-Json
+Invoke-RestMethod -Uri "http://localhost:3000/loans" -Method POST -ContentType "application/json" -Body $loan
+```
+
+**Listar empréstimos**
+```
+Invoke-RestMethod -Uri "http://localhost:3000/loans" -Method GET
+```
+
+**Somente em aberto (returned=false)**
+```
+Invoke-RestMethod -Uri "http://localhost:3000/loans?returned=false" -Method GET
+```
+
+**Somente devolvidos (returned=true)**
+```
+Invoke-RestMethod -Uri "http://localhost:3000/loans?returned=true" -Method GET
+```
+
+**Filtrar por usuário (ex.: userId=1)**
+```
+Invoke-RestMethod -Uri "http://localhost:3000/loans?userId=1&returned=false" -Method GET
+```
+
+**Marcar devolução (substitua 1 pelo id do empréstimo)**
+```
+Invoke-RestMethod -Uri "http://localhost:3000/loans/1/return" -Method PATCH
+```
+
+# 🧭 Endpoints implementados
+
+**Root**
+- `GET /` — informações básicas da API (name, version, status, docs)
+
+**Books**
+- `POST /books` — cria livro  
+- `GET /books?status=AVAILABLE|BORROWED&search=<title>` — lista com filtros  
+- `PATCH /books/:id/status` — alterna status
+
+**Users**
+- `POST /users` — cria usuário  
+- `GET /users?search=<term>` — lista usuários (filtro por nome/e-mail)
+
+**Loans**
+- `POST /loans` — registra empréstimo  
+- `GET /loans` — lista (filtros: `userId`, `bookId`, `returned`)  
+- `PATCH /loans/:id/return` — marca devolução
+
+# 🧪 Testes
+
+Rodar testes unitários:
+```
+npm test
+```
+
+Modo observação (com Git inicializado):
+```
+npm run test:watch
+```
+
+Cobertura:
+```
+npm run test:cov
+```
+
+# 🔍 Prisma Studio (GUI do banco)
+
+Abrir o Studio (tabelas Book, User, Loan):
+```
+npx prisma studio
+```
+
+# 🧯 Solução de problemas comuns
+
+“Expected property name or '}' in JSON…” no PowerShell
+Use Invoke-RestMethod e monte o body com ConvertTo-Json (exemplos acima).
+
+Cannot GET /api-json
+O Swagger precisa estar configurado; no projeto já está com jsonDocumentUrl: 'api-json'. Salve o main.ts e garanta que está rodando com start:dev.
+
+Porta 5432 ocupada / conexão recusada
+Verifique se o PostgreSQL está ativo e se a DATABASE_URL está correta.
+
+Migrations estão ok mas não vejo dados
+Rode npm run seed e/ou abra npx prisma studio.
+
+# 👤 Desenvolvedor
+
+[<img src="https://avatars.githubusercontent.com/u/43549254?v=4" width=100 title="Igor Mendes">](https://github.com/igorsamendes)
