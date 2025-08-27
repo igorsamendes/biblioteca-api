@@ -50,13 +50,4 @@ export class LoansService {
       include: { book: true, user: true }, // ajuda na visualização
     });
   }
-
-  async findOne(id: number) {
-    const loan = await this.prisma.loan.findUnique({
-      where: { id },
-      include: { book: true, user: true },
-    });
-    if (!loan) throw new NotFoundException('Loan not found');
-    return loan;
-  }
 }

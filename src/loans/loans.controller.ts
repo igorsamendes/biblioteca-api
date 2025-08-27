@@ -28,15 +28,6 @@ export class LoansController {
     return this.loansService.findAll(query);
   }
 
-  @ApiOperation({ summary: 'Buscar empréstimo por ID' })
-  @ApiParam({ name: 'id', description: 'ID do empréstimo' })
-  @ApiResponse({ status: 200, description: 'Empréstimo encontrado' })
-  @ApiResponse({ status: 404, description: 'Empréstimo não encontrado' })
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.loansService.findOne(+id);
-  }
-
   @ApiOperation({ summary: 'Marcar devolução de um livro' })
   @ApiParam({ name: 'id', description: 'ID do empréstimo' })
   @ApiResponse({ status: 200, description: 'Livro devolvido' })

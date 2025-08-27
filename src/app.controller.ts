@@ -1,12 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { ApiExcludeController } from '@nestjs/swagger';
 
+@ApiExcludeController() // esconde esta rota do Swagger
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  getRoot() {
+    return {
+      name: 'Biblioteca API',
+      version: '1.0.0',
+      status: 'ok',
+      docs: '/api-docs',
+    };
   }
 }
