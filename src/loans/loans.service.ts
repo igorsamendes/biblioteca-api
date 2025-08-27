@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { FilterLoansDto } from './dto/filter-loans.dto';
 
 @Injectable()
 export class LoansService {
@@ -33,5 +34,29 @@ export class LoansService {
 
       return { message: 'Book returned' };
     });
+  }
+  findAll({ userId, bookId, returned }: FilterLoansDto) {
+    return this.prisma.loan.findMany({
+      where: {
+        ...(userId ? { userId } : {}),
+        ...(bookId ? { bookId } : {}),
+        ...(returned === true
+          ? { returnDate: { not: null } }
+          : returned === false
+          ? { returnDate: null }
+          : {}),
+      },
+      orderBy: { id: 'desc' },
+      include: { book: true, user: true }, // ajuda na visualização
+    });
+  }
+
+  async findOne(id: number) {
+    const loan = await this.prisma.loan.findUnique({
+      where: { id },
+      include: { book: true, user: true },
+    });
+    if (!loan) throw new NotFoundException('Loan not found');
+    return loan;
   }
 }
