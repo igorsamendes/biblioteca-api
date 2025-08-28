@@ -58,19 +58,37 @@ npm -v
 npm install
 ```
 
-## 5) Configurar variáveis de ambiente
+## 5) Configurar variáveis de ambiente e preparar o banco
 
-Crie um arquivo .env na raiz do projeto (baseado no .env.example):
+Crie um arquivo **.env** na **raiz** do projeto (baseado no `.env.example`):
 
 ```
 DATABASE_URL="postgresql://postgres:senha@localhost:5432/biblioteca?schema=public"
 ```
 
-Certifique-se de ter o PostgreSQL instalado e em execução (porta padrão 5432).
-Crie o banco (se ainda não existir):
+**Conecte no PostgreSQL** usando o `psql` (porta padrão **5432**):
+
+```
+psql -h localhost -p 5432 -U postgres -W
+```
+
+- O `-W` faz o `psql` pedir a senha do usuário `postgres`.  
+- Ao autenticar, você verá o prompt `postgres=#`.
+
+**Crie o banco** (caso ainda não exista):
+
 ```
 CREATE DATABASE biblioteca;
 ```
+
+Sair do psql:  
+```
+\q
+```
+
+> Dica: se o comando `psql` não for reconhecido, verifique a instalação do PostgreSQL e se o diretório **bin** do Postgres está no **PATH** do sistema.
+
+
 
 ## 6) Aplicar migrations (Prisma)
 
