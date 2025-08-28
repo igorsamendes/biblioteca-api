@@ -8,7 +8,7 @@ export class FilterBooksDto {
   @IsEnum(BookStatus)
   status?: BookStatus;
 
-  @ApiPropertyOptional({ example: 'clean', description: 'Busca por título (contém, case-insensitive)' })
+  @ApiPropertyOptional({ example: 'senhor', description: 'Busca por título (contém, case-insensitive)' })
   @IsOptional()
   @IsString()
   search?: string;
