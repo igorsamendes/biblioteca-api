@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 async function seedUsers() {
   const users = [
-    { name: 'Ana Souza',    email: 'ana.souza@example.com' },
+    { name: 'Igor Mendes',    email: 'igor.mendes@example.com' },
     { name: 'Carlos Pereira', email: 'carlos.pereira@example.com' },
   ];
 
@@ -14,17 +14,16 @@ async function seedUsers() {
       update: {},
       create: u,
     });
-    console.log(`✅ User ok: ${u.name} <${u.email}>`);
+    console.log(`User ok: ${u.name} <${u.email}>`);
   }
 }
 
 async function seedBooks() {
   type B = { title: string; author: string; publishedYear: number };
   const books: B[] = [
-    { title: "Harry Potter and the Sorcerer's Stone", author: 'J.K. Rowling', publishedYear: 1997 },
-    { title: 'The Hobbit',                             author: 'J.R.R. Tolkien', publishedYear: 1937 },
-    { title: '1984',                                   author: 'George Orwell',  publishedYear: 1949 },
-    { title: 'To Kill a Mockingbird',                  author: 'Harper Lee',     publishedYear: 1960 },
+    { title: "Harry Potter", author: 'J.K. Rowling',    publishedYear: 1997 },
+    { title: 'O Hobbit',     author: 'J.R.R. Tolkien',  publishedYear: 1937 },
+    { title: '1984',         author: 'George Orwell',   publishedYear: 1949 },
   ];
 
   for (const b of books) {
@@ -39,25 +38,25 @@ async function seedBooks() {
     });
 
     if (exists) {
-      console.log(`✅ Book ok: ${b.title} — ${b.author} (${b.publishedYear})`);
+      console.log(`Book ok: ${b.title} — ${b.author} (${b.publishedYear})`);
       continue;
     }
 
     await prisma.book.create({ data: b }); // status = AVAILABLE por default
-    console.log(`➕ Book criado: ${b.title} — ${b.author} (${b.publishedYear})`);
+    console.log(`Book criado: ${b.title} — ${b.author} (${b.publishedYear})`);
   }
 }
 
 async function main() {
-  console.log('🌱 Iniciando seed...');
+  console.log('Iniciando seed.');
   await seedUsers();
   await seedBooks();
-  console.log('🌱 Seed finalizado.');
+  console.log('Seed finalizado.');
 }
 
 main()
   .catch((e) => {
-    console.error('❌ Seed falhou:', e);
+    console.error('Seed falhou:', e);
     process.exit(1);
   })
   .finally(async () => {

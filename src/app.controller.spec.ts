@@ -1,22 +1,23 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 
 describe('AppController', () => {
   let appController: AppController;
 
-  beforeEach(async () => {
-    const app: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
-      providers: [AppService],
-    }).compile();
-
-    appController = app.get<AppController>(AppController);
+  beforeEach(() => {
+    appController = new AppController();
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return landing payload', () => {
+      const res = appController.getRoot();
+      expect(res).toEqual(
+        expect.objectContaining({
+          name: 'Biblioteca API',
+          status: 'ok',
+        }),
+      );
+      expect(typeof res.version).toBe('string');
+      expect(res.docs).toBe('/api-docs');
     });
   });
 });
